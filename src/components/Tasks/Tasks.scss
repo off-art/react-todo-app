@@ -13,9 +13,60 @@
         opacity: 0.2;
       }
     }
+    img {
+      margin-left: 15px;
+      opacity: 0;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
+
+  &__form {
+    &-block {
+      margin-top: 20px;
+    }
+
+    &-new {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      opacity: 0.4;
+      transition: opacity 0.15s ease-in-out;
+      cursor: pointer;
+      
+      &:hover {
+        opacity: 0.8;
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+        margin-left: 4px;
+      }
+
+      span {
+        font-size: 16px;
+        margin-left: 15px;
+      }
+    }
+  }
+
   &__items {
     margin-top: 30px;
+
+    h2 {
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      color: #c9d1d3;
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+    }
     &-row {
       display: flex;
       align-items: center;
@@ -25,16 +76,6 @@
         padding: 10px;
         font-size: 16px;
       }
-    }
-  }
-
-  img {
-    margin-left: 15px;
-    opacity: 0;
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.8;
     }
   }
 

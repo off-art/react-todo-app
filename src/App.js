@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import { List, AddList, Tasks, Loader } from "./components";
 import axios from "axios";
 
-
 function App() {
+  const [lists, setLists] = useState(null);
+  const [colors, setColors] = useState(null);
+  const [activeItem, setActiveItem] = useState([]);
 
-  const [lists, setLists] = useState(null)
-  const [colors, setColors] = useState(null)
-  
   useEffect(() => {
-    axios.get("http://localhost:3001/lists?_expand=color&&_embed=tasks").then(({ data }) => {
-      setLists(data)
-    });
+    axios
+      .get("http://localhost:3001/lists?_expand=color&&_embed=tasks")
+      .then(({ data }) => {
+        setLists(data);
+      });
 
     axios.get("http://localhost:3001/colors").then(({ data }) => {
-      setColors(data)
+      setColors(data);
     });
   }, []);
 
@@ -23,8 +24,36 @@ function App() {
     setLists(newList);
   };
 
+  const onAddTask = (listId, taskObj) => {
+    // const newList = [...lists, taskObj];
+
+    // console.log(listId, taskObj);
+
+    const newList = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks = [...item.tasks, taskObj];
+      }
+      return item;
+    });
+    setLists(newList);
+  };
+
   const onRemove = (obj) => {
-    const newList = [...lists].filter(item => item !== obj);
+    const newList = [...lists].filter((item) => item !== obj);
+    setLists(newList);
+  };
+
+  const onClickItem = (obj) => {
+    setActiveItem(obj);
+  };
+
+  const onEditTitle = (id, title) => {
+    const newList = lists.map((item) => {
+      if (item.id === id) {
+        item.name = title;
+      }
+      return item;
+    });
     setLists(newList);
   };
 
@@ -34,6 +63,7 @@ function App() {
         <List
           items={[
             {
+               active: true,
               icon: (
                 <svg
                   width="18"
@@ -52,16 +82,27 @@ function App() {
             },
           ]}
         />
-        {lists ? 
-          (<List onRemove={onRemove} items={lists} isRemovable />)
-          : (
-            <Loader/>
-          )
-        }
+        {lists ? (
+          <List
+            onClickItem={onClickItem}
+            onRemove={onRemove}
+            items={lists}
+            activeItem={activeItem}
+            isRemovable
+          />
+        ) : (
+          <Loader />
+        )}
         <AddList click={onAddList} colors={colors} />
       </div>
       <div className="todo__tasks">
-        { lists && <Tasks  lists={lists[1]}/>}
+        {lists && activeItem && (
+          <Tasks
+            onAddTask={onAddTask}
+            onEditTitle={onEditTitle}
+            lists={activeItem}
+          />
+        )}
       </div>
     </div>
   );

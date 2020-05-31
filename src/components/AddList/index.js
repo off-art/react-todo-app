@@ -41,6 +41,7 @@ const AddList = ({ colors, click }) => {
         click(listObj);
         onClose();
       })
+      .catch(() => alert("Ошибка при добавлении списка"))
       .finally(() => setIsLoading(false));
   };
 

@@ -38,8 +38,6 @@ body {
   }
 }
 
-
-
 .field {
   background: #ffffff;
   border: 1px solid #efefef;
@@ -48,6 +46,10 @@ body {
   padding: 8px 12px;
   width: 100%;
   font-family: "Lato", sans-serif;
+
+  &--add {
+    margin-bottom: 16px;
+  }
 
   &:focus {
     border-color: #dbdbdb;
@@ -67,12 +69,30 @@ body {
   color: #ffffff;
   border: none;
   cursor: pointer;
-
+  
   &:hover {
     background: darken(#4dd599, 6%);
   }
 
   &:active {
     background: darken(#4dd599, 10%);
+  }
+  &--grey {
+    background: #f4f6f8;
+    color: #9c9c9c;
+    margin-left: 10px;
+
+    &:hover {
+      background: darken(#f4f6f8, 4%);
+    }
+
+    &:active {
+      background: darken(#f4f6f8, 60%);
+    }
+  }
+
+  &:disabled {
+    background: #e6e6e6;
+    color: #b9b9b9;
   }
 }
