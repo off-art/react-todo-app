@@ -13,7 +13,7 @@
     {
       "name": "Спорт",
       "colorId": 5,
-      "id": 4
+      "id": 3
     }
   ],
   "tasks": [
@@ -54,40 +54,16 @@
       "id": 6
     },
     {
-      "listId": 4,
-      "text": "asdad",
-      "completed": false,
-      "id": 7
-    },
-    {
       "listId": 1,
       "text": "asddasd",
       "completed": false,
       "id": 9
     },
     {
-      "listId": 4,
-      "text": "Жим лежа 100кг",
-      "completed": false,
-      "id": 10
-    },
-    {
       "listId": 1,
       "text": "dsf",
       "completed": false,
       "id": 11
-    },
-    {
-      "listId": 4,
-      "text": "dsfsf",
-      "completed": false,
-      "id": 12
-    },
-    {
-      "listId": 4,
-      "text": "",
-      "completed": false,
-      "id": 13
     },
     {
       "listId": 1,
@@ -99,6 +75,18 @@
       "text": "dsf",
       "completed": false,
       "id": 15
+    },
+    {
+      "listId": 3,
+      "text": "nkjlkj",
+      "completed": false,
+      "id": 16
+    },
+    {
+      "listId": 2,
+      "text": "kjkjkjk",
+      "completed": false,
+      "id": 17
     }
   ],
   "colors": [
