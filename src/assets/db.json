@@ -9,16 +9,6 @@
       "id": 2,
       "name": "Фронтенд",
       "colorId": 4
-    },
-    {
-      "name": "кщщ",
-      "colorId": 4,
-      "id": 3
-    },
-    {
-      "name": "ывывв",
-      "colorId": 8,
-      "id": 4
     }
   ],
   "tasks": [
@@ -47,18 +37,6 @@
       "completed": false
     },
     {
-      "listId": 2,
-      "text": "sds",
-      "completed": false,
-      "id": 5
-    },
-    {
-      "listId": 2,
-      "text": "asdad",
-      "completed": false,
-      "id": 6
-    },
-    {
       "listId": 1,
       "text": "asddasd",
       "completed": false,
@@ -66,15 +44,9 @@
     },
     {
       "listId": 1,
-      "text": "dsf",
+      "text": "sddd",
       "completed": false,
       "id": 11
-    },
-    {
-      "listId": 1,
-      "text": "ввв",
-      "completed": false,
-      "id": 14
     },
     {
       "text": "dsf",
@@ -82,28 +54,10 @@
       "id": 15
     },
     {
-      "listId": 2,
-      "text": "kjkjkjk",
+      "listId": 1,
+      "text": "jhjhjh",
       "completed": false,
-      "id": 17
-    },
-    {
-      "listId": 3,
-      "text": "фвыфвфв",
-      "completed": false,
-      "id": 20
-    },
-    {
-      "listId": 2,
-      "text": "фывфв",
-      "completed": false,
-      "id": 21
-    },
-    {
-      "listId": 4,
-      "text": "ывы",
-      "completed": false,
-      "id": 22
+      "id": 23
     }
   ],
   "colors": [

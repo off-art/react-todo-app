@@ -49,6 +49,46 @@ function App() {
     setLists(newList);
   };
 
+  const onRemoveTask = (listId, taskId) => {
+    if (window.confirm("Вы действительно хотите удалить задачу ?")) {
+      const newList = lists.map((item) => {
+        if (item.id === listId) {
+          item.tasks = item.tasks.filter((task) => task.id !== taskId);
+        }
+        return item;
+      });
+      setLists(newList);
+      axios.delete("http://localhost:3001/tasks/" + taskId).catch(() => {
+        alert("Не удалось удалить задачу");
+      });
+    }
+  };
+
+  const onEditTask = (listId, objTask) => {
+    const { text, id } = objTask
+    const newTasktext = window.prompt('Текст задачи', text)
+    if(!newTasktext) {
+      return
+    }
+    const newList = lists.map((item) => {
+      if (item.id === listId) {
+        item.tasks = item.tasks.map((task) => {
+          if(task.id === id) {
+            task.text = newTasktext
+          }
+          return task
+        });
+      }
+      return item;
+    });
+    setLists(newList);
+    axios.patch("http://localhost:3001/tasks/" + id, {
+      text: newTasktext 
+    }).catch(() => {
+      alert("Не удалось удалить задачу");
+    });
+  };
+
   useEffect(() => {
     const listId = history.location.pathname.split("/lists/")[1];
     if (lists) {
@@ -65,7 +105,7 @@ function App() {
           onClickItem={() => history.push("/")}
           items={[
             {
-              active: true,
+              active: !true,
               icon: (
                 <svg
                   width="18"
@@ -112,6 +152,7 @@ function App() {
                   onEditTitle={onEditTitle}
                   lists={list}
                   withOutEpmty
+                  // onRemove={onRemoveTask}
                 />
               );
             })}
@@ -123,6 +164,8 @@ function App() {
               onAddTask={onAddTask}
               onEditTitle={onEditTitle}
               lists={activeItem}
+              onRemoveTask={onRemoveTask}
+              onEditTask={onEditTask}
             />
           )}
         </Route>

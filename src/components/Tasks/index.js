@@ -2,12 +2,13 @@ import React from "react";
 import axios from "axios";
 
 import AddTasksForm from "../AddTasksForm";
+import Task from '../Task'
 
 import editSvg from "../../assets/img/edit.svg";
 
 import "./Tasks.scss";
 
-export default function Tasks({ lists, onEditTitle, onAddTask, withOutEpmty }) {
+export default function Tasks({ lists, onEditTitle, onAddTask, withOutEpmty, onRemoveTask, onEditTask }) {
   const { name, tasks, id, color } = lists;
 
   const editTitle = () => {
@@ -24,6 +25,7 @@ export default function Tasks({ lists, onEditTitle, onAddTask, withOutEpmty }) {
     }
   };
 
+
   return (
     <div className="tasks">
       {tasks && (
@@ -39,35 +41,9 @@ export default function Tasks({ lists, onEditTitle, onAddTask, withOutEpmty }) {
         )}
         {tasks &&
           tasks.map((task) => {
-            const { text, id } = task;
+            
             return (
-              <div key={id} className="tasks__items-row">
-                <div className="checkbox">
-                  <input id={`task-${id}`} type="checkbox" />
-                  <label htmlFor={`task-${id}`}>
-                    <svg
-                      width="11"
-                      height="8"
-                      viewBox="0 0 11 8"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9.29999 1.20001L3.79999 6.70001L1.29999 4.20001"
-                        stroke="#000"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </label>
-                </div>
-                <input
-                  value={text}
-                  readOnly
-                  // onChange={(e) => setInputValue(e.target.value)}
-                />
-              </div>
+              <Task {...task} onEdit={onEditTask} lists={lists} key={task.id} onRemove={onRemoveTask} />
             );
           })}
         <AddTasksForm key={lists.id} onAddTask={onAddTask} list={lists} />

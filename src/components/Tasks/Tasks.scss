@@ -2,7 +2,13 @@
   &:not(:last-of-type) {
     margin-bottom: 40px;
   }
-  
+  &__p {
+    width: 100%;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+  }
+
   &__title {
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
@@ -40,7 +46,7 @@
       opacity: 0.4;
       transition: opacity 0.15s ease-in-out;
       cursor: pointer;
-      
+
       &:hover {
         opacity: 0.8;
       }
@@ -71,52 +77,78 @@
       left: 50%;
       top: 50%;
     }
+
     &-row {
       display: flex;
       align-items: center;
-      input {
-        width: 100%;
-        border: none;
-        padding: 10px;
-        font-size: 16px;
+
+      &:hover &-actions {
+        opacity: 1;
+      }
+      
+
+      &-actions {
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 50px;
+        height: 32px;
+        background-color: lighten(#f4f6f8, 2%);
+        border-radius: 6px;
+        margin-left: 5px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken(#f4f6f8, 2%);
+          svg {
+            opacity: 0.9;
+          }
+        }
+
+        svg {
+          width: 11px;
+          height: 11px;
+          opacity: 0.4;
+        }
       }
     }
   }
+}
 
-  .checkbox {
-    label {
-      border: 2px solid #e8e8e8;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+.checkbox {
+  label {
+    border: 2px solid #e8e8e8;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      &:hover {
-        background: #f2f2f2;
-        border: 2px solid #f2f2f2;
-        svg {
-          opacity: 0.2;
-        }
-      }
-
+    &:hover {
+      background: #f2f2f2;
+      border: 2px solid #f2f2f2;
       svg {
-        opacity: 0;
+        opacity: 0.2;
       }
     }
-    input {
-      display: none;
+
+    svg {
+      opacity: 0;
     }
-    input:checked + label {
-      background: #4dd599;
-      border: 2px solid #4dd599;
-      svg {
-        opacity: 1;
-        path {
-          stroke: #fff;
-        }
+  }
+  input {
+    display: none;
+  }
+  input:checked + label {
+    background: #4dd599;
+    border: 2px solid #4dd599;
+    svg {
+      opacity: 1;
+      path {
+        stroke: #fff;
       }
     }
   }
