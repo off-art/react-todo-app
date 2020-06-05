@@ -2,13 +2,18 @@
   "lists": [
     {
       "id": 1,
-      "name": "Продажи",
+      "name": "Покупки",
       "colorId": 5
     },
     {
       "id": 2,
       "name": "Фронтенд",
       "colorId": 4
+    },
+    {
+      "name": "Музыка",
+      "colorId": 3,
+      "id": 3
     }
   ],
   "tasks": [
@@ -16,19 +21,19 @@
       "id": 1,
       "listId": 2,
       "text": "Изучить JavaScript",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
       "listId": 2,
       "text": "Изучить паттерны проектирования",
-      "completed": true
+      "completed": false
     },
     {
       "id": 3,
       "listId": 2,
       "text": "ReactJS Hooks (useState, useReducer, useEffect и т.д.)",
-      "completed": true
+      "completed": false
     },
     {
       "id": 4,
@@ -38,13 +43,13 @@
     },
     {
       "listId": 1,
-      "text": "asddasd",
-      "completed": true,
+      "text": "Молоко",
+      "completed": false,
       "id": 9
     },
     {
       "listId": 1,
-      "text": "sddd",
+      "text": "Сметана",
       "completed": false,
       "id": 11
     },
@@ -55,9 +60,27 @@
     },
     {
       "listId": 1,
-      "text": "jhjhjh",
-      "completed": true,
-      "id": 23
+      "text": "Сыр",
+      "completed": false,
+      "id": 16
+    },
+    {
+      "listId": 1,
+      "text": "Лук",
+      "completed": false,
+      "id": 17
+    },
+    {
+      "listId": 2,
+      "text": "CSS",
+      "completed": false,
+      "id": 18
+    },
+    {
+      "listId": 3,
+      "text": "Бах",
+      "completed": false,
+      "id": 19
     }
   ],
   "colors": [
