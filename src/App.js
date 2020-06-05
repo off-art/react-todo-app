@@ -35,16 +35,10 @@ function App() {
     });
     setLists(newList);
   };
-
   const onRemove = (obj) => {
     const newList = [...lists].filter((item) => item !== obj);
     setLists(newList);
   };
-
-  // const onClickItem = (obj) => {
-  //   setActiveItem(obj);
-  // };
-
   const onEditTitle = (id, title) => {
     const newList = lists.map((item) => {
       if (item.id === id) {
@@ -56,21 +50,19 @@ function App() {
   };
 
   useEffect(() => {
-    const listId = history.location.pathname.split("lists/")[1];
+    const listId = history.location.pathname.split("/lists/")[1];
     if (lists) {
-      const list = lists.find((list) => list.id === Number(listId));
+      const list = lists.find((list) => list.id === +listId);
       setActiveItem(list);
     }
-    console.log(history.location.pathname);
   }, [lists, history.location.pathname]);
 
+  useEffect(() => {}, [lists]);
   return (
     <div className="todo">
       <div className="todo__sidebar">
         <List
-          onClickItem={(list) => {
-            history.push(`/`);
-          }}
+          onClickItem={() => history.push("/")}
           items={[
             {
               active: true,
@@ -94,12 +86,12 @@ function App() {
         />
         {lists ? (
           <List
-            onClickItem={(list) => {
-              history.push(`/list/${list.id}`);
-              // onClickItem
+            items={lists}
+            onClickItem={(lists) => {
+              history.push(`/lists/${lists.id}`);
+              setActiveItem(lists); //работает
             }}
             onRemove={onRemove}
-            items={lists}
             activeItem={activeItem}
             isRemovable
           />
@@ -108,20 +100,24 @@ function App() {
         )}
         <AddList click={onAddList} colors={colors} />
       </div>
+
       <div className="todo__tasks">
         <Route exact path="/">
           {lists &&
-            lists.map((list, index) => (
-              <Tasks
-                key={list.id}
-                onAddTask={onAddTask}
-                onEditTitle={onEditTitle}
-                lists={list}
-                withOutEpmty
-              />
-            ))}
+            lists.map((list) => {
+              return (
+                <Tasks
+                  key={list.id}
+                  onAddTask={onAddTask}
+                  onEditTitle={onEditTitle}
+                  lists={list}
+                  withOutEpmty
+                />
+              );
+            })}
         </Route>
-        <Route path="/list/:id">
+
+        <Route path="/lists/:id">
           {lists && activeItem && (
             <Tasks
               onAddTask={onAddTask}
