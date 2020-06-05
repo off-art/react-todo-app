@@ -64,29 +64,54 @@ function App() {
     }
   };
 
+  const onCompeteTask = (listId, taskId, completed) => {
+    const newlist = lists.map((list) => {
+      if (list.id === listId) {
+        list.tasks = list.tasks.map((task) => {
+          if (task.id === taskId) {
+            task.completed = completed;
+          }
+          return task;
+        });
+      }
+      return list;
+    });
+    setLists(newlist);
+
+    axios
+      .patch("http://localhost:3001/tasks/" + taskId, {
+        completed
+      })
+      .catch(() => {
+        alert("Ошибка");
+      });
+  };
+
   const onEditTask = (listId, objTask) => {
-    const { text, id } = objTask
-    const newTasktext = window.prompt('Текст задачи', text)
-    if(!newTasktext) {
-      return
+    const { text, id } = objTask;
+    const newTasktext = window.prompt("Текст задачи", text);
+    if (!newTasktext) {
+      return;
     }
     const newList = lists.map((item) => {
       if (item.id === listId) {
         item.tasks = item.tasks.map((task) => {
-          if(task.id === id) {
-            task.text = newTasktext
+          if (task.id === id) {
+            task.text = newTasktext;
           }
-          return task
+          return task;
         });
       }
       return item;
     });
     setLists(newList);
-    axios.patch("http://localhost:3001/tasks/" + id, {
-      text: newTasktext 
-    }).catch(() => {
-      alert("Не удалось удалить задачу");
-    });
+    axios
+      .patch("http://localhost:3001/tasks/" + id, {
+        text: newTasktext,
+      })
+      .catch(() => {
+        alert("Не удалось удалить задачу");
+      });
   };
 
   useEffect(() => {
@@ -148,11 +173,13 @@ function App() {
               return (
                 <Tasks
                   key={list.id}
-                  onAddTask={onAddTask}
-                  onEditTitle={onEditTitle}
                   lists={list}
                   withOutEpmty
-                  // onRemove={onRemoveTask}
+                  onAddTask={onAddTask}
+                  onEditTitle={onEditTitle}
+                  onRemoveTask={onRemoveTask}
+                  onEditTask={onEditTask}
+                  onCompeteTask={onCompeteTask}
                 />
               );
             })}
@@ -161,11 +188,12 @@ function App() {
         <Route path="/lists/:id">
           {lists && activeItem && (
             <Tasks
+              lists={activeItem}
               onAddTask={onAddTask}
               onEditTitle={onEditTitle}
-              lists={activeItem}
               onRemoveTask={onRemoveTask}
               onEditTask={onEditTask}
+              onCompeteTask={onCompeteTask}
             />
           )}
         </Route>

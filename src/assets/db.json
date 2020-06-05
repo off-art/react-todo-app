@@ -22,7 +22,7 @@
       "id": 2,
       "listId": 2,
       "text": "Изучить паттерны проектирования",
-      "completed": false
+      "completed": true
     },
     {
       "id": 3,
@@ -39,7 +39,7 @@
     {
       "listId": 1,
       "text": "asddasd",
-      "completed": false,
+      "completed": true,
       "id": 9
     },
     {
@@ -56,7 +56,7 @@
     {
       "listId": 1,
       "text": "jhjhjh",
-      "completed": false,
+      "completed": true,
       "id": 23
     }
   ],

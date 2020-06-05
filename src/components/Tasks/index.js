@@ -8,7 +8,7 @@ import editSvg from "../../assets/img/edit.svg";
 
 import "./Tasks.scss";
 
-export default function Tasks({ lists, onEditTitle, onAddTask, withOutEpmty, onRemoveTask, onEditTask }) {
+export default function Tasks({ lists, onEditTitle, onAddTask, withOutEpmty, onRemoveTask, onEditTask, onCompeteTask }) {
   const { name, tasks, id, color } = lists;
 
   const editTitle = () => {
@@ -43,7 +43,7 @@ export default function Tasks({ lists, onEditTitle, onAddTask, withOutEpmty, onR
           tasks.map((task) => {
             
             return (
-              <Task {...task} onEdit={onEditTask} lists={lists} key={task.id} onRemove={onRemoveTask} />
+              <Task onCompete={onCompeteTask} {...task} onEdit={onEditTask} lists={lists} key={task.id} onRemove={onRemoveTask} />
             );
           })}
         <AddTasksForm key={lists.id} onAddTask={onAddTask} list={lists} />

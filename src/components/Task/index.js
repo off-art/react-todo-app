@@ -1,12 +1,16 @@
 import React from "react";
 
 export default function Task(task) {
-  const { id, text, onRemove, lists, onEdit } = task;
+  const { id, text, onRemove, lists, onEdit, onCompete, completed } = task;
+
+  const onChangeCheckBox = (e) => {
+    onCompete(lists.id, id, e.target.checked);
+  };
 
   return (
     <div key={id} className="tasks__items-row">
       <div className="checkbox">
-        <input id={`task-${id}`} type="checkbox" />
+        <input onChange={onChangeCheckBox} id={`task-${id}`} type="checkbox" checked={completed} />
         <label htmlFor={`task-${id}`}>
           <svg
             width="11"
@@ -25,9 +29,9 @@ export default function Task(task) {
           </svg>
         </label>
       </div>
-      <p className='tasks__p'>{text}</p>
+      <p className="tasks__p">{text}</p>
       <div className="tasks__items-row-actions">
-        <div onClick={() => onEdit(lists.id, {id, text})}>
+        <div onClick={() => onEdit(lists.id, { id, text })}>
           <svg
             width="15"
             height="15"
