@@ -154,7 +154,7 @@ function App() {
             items={lists}
             onClickItem={(lists) => {
               history.push(`/lists/${lists.id}`);
-              setActiveItem(lists); //работает
+              setActiveItem(lists);
             }}
             onRemove={onRemove}
             activeItem={activeItem}
